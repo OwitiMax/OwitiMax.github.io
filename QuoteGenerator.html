@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random quote generator</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        #container{
+            background-color: aquamarine;
+            height: 540px;
+            width: 550px;
+            margin-top: 50px;
+            border-radius: 10px;
+            display: flex;
+            /* align-items: center;
+            justify-content: center; */
+        }
+        #main{
+            padding: 15px;
+            margin: 10px auto;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            /* //display: flex; */
+        }
+        h1{
+         color: brown;
+         font-family: 'Courier New', Courier, monospace;   
+        }
+        button{
+            padding: 10px;
+            background-color: brown;
+            color: white;
+            font-size: 18px;
+            border: 0;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            letter-spacing: 1px;
+            width: 200px;
+        }
+        #quote{
+            height: 400px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+           
+        }
+        h3,h2{
+            padding: 10px;
+
+            color: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="main">
+            <h1 id="title">Random Quote Generator</h1>
+            <div id="quote">
+                <h3 id="quot">Quote...</h3>
+                <h2 id="quoter"><span>~</span><span id="nameofQuoter">Name</span></h2>
+            </div>
+       <button id="generator">Generate</button>
+        </div>
+    </div>
+    <script>
+        let quoting=document.querySelector("#quot")
+        let nameOfQuoter=document.querySelector("#nameofQuoter")
+        let generateBut=document.querySelector("#generator")
+        generateBut.addEventListener("click",()=>{
+          url=("https://api.quotable.io/random")
+          fetch(url)
+          .then((response)=>{
+            return response.json()
+          }) 
+          .then((data)=>{
+           quoting.textContent=data.content
+           nameOfQuoter.textContent=data.author 
+          }) 
+        })
+    </script>
+</body>
+</html>
